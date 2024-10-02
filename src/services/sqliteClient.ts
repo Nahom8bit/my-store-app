@@ -2,16 +2,16 @@
 class MockSQLite {
   private data: { [key: string]: any[] } = {};
 
-  async getUnsyncedChanges() {
+  async getUnsyncedChanges(): Promise<{ table: string; data: any[] }[]> {
     // Mock implementation
     return [];
   }
 
-  async upsert(table: string, data: any[]) {
+  async upsert(table: string, data: any[]): Promise<void> {
     this.data[table] = [...(this.data[table] || []), ...data];
   }
 
-  async markChangesSynced() {
+  async markChangesSynced(): Promise<void> {
     // Mock implementation
   }
 }
